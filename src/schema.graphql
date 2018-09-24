@@ -1,0 +1,32 @@
+# GraphQL schema
+# C#: similar to class
+# The ID scalar type represents a unique identifier, often used to refetch an object or as the key for a cache.
+# import Link, LinkSubscriptionPayload, Vote, VoteSubscriptionPayload from "./generated/prisma.graphql"
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  links: [Link!]!
+}
+
+type Query {
+  info: String!,
+  feed: [Link]!
+}
+type Mutation {
+  createLink(url: String!, description: String): Link!,
+  signup(email: String!, password: String!, name: String!): AuthPayload
+  login(email: String!, password: String!): AuthPayload,
+  vote(linkId: ID!): Vote
+}
+
+type Subscription {
+  newLink: LinkSubscriptionPayload
+  newVote: VoteSubscriptionPayload
+}

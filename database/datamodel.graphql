@@ -1,0 +1,25 @@
+# Prisma will auto-generate globally unique ID
+# field provided by Prisma- createdAt, updatedAt
+type Link {
+  id: ID! @unique
+  createdAt: DateTime!
+  description: String!
+  url: String!
+  postedBy: User
+  votes: [Vote!]!
+}
+
+type User {
+  id: ID! @unique
+  name: String!
+  email: String! @unique
+  password: String!
+  links: [Link!]!
+  votes: [Vote!]!
+}
+
+type Vote {
+  id: ID! @unique
+  link: Link!
+  user: User!
+}

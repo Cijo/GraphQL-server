@@ -1,0 +1,13 @@
+# The HTTP endpoint for your Prisma API.It is actually required to deploy your Prisma API. It will be gerated when we deploy. 
+endpoint: https://eu1.prisma.sh/itscijo/database/dev
+
+# Points to the file that holds your data model which is the foundation for the Prisma CRUD API.
+datamodel: datamodel.graphql
+
+# You can only access the API when providing JWTs that are signed with this secret
+secret: mysecret123
+
+# Deploy hook
+hooks:
+  post-deploy:
+    - graphql get-schema --project database
